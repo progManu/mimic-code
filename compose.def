@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: postgres:14-alpine
+%setup
+    mkdir -p /var/lib/mimic-code/mimiciv
+    mkdir -p /var/lib/mimic-code/mimic-iv
+    mkdir -p /var/lib/mimic-code/mimic-iv-cxr
+    mkdir -p /var/lib/mimic-code/mimic-iv-ed
+    mkdir -p /var/lib/mimic-code/mimic-iv-note
+    mkdir -p /var/lib/mimic-code/scripts
+    echo "PostgreSQL + MIMIC-IV container is ready."
+%environment
+    export POSTGRES_USER=root
+    export POSTGRES_PASSWORD=root
+    export POSTGRES_DB=mimiciv
+    export PGDATA=/var/lib/postgresql/data
+
+%runscript
+    exec postgres
