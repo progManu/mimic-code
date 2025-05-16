@@ -1,0 +1,23 @@
+version: "3"
+volumes:
+  data:
+  export:
+services:
+  postgresql:
+    image: docker.io/postgres:14-alpine
+    container_name: postgresql-db
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER: root
+      - POSTGRES_PASSWORD: root
+      - POSTGRES_DB: mimiciv
+    volumes:
+      - data:/var/lib/postgresql/data
+      - export:/export
+      - ./mimiciv/:/var/lib/mimic-code/mimiciv
+      - ./mimic-iv/:/var/lib/mimic-code/mimic-iv
+      - ./mimic-iv-cxr/:/var/lib/mimic-code/mimic-iv-cxr
+      - ./mimic-iv-ed/:/var/lib/mimic-code/mimic-iv-ed
+      - ./mimic-iv-note/:/var/lib/mimic-code/mimic-iv-note
+      - ./scripts/:/var/lib/mimic-code/scripts
